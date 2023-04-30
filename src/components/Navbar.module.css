@@ -1,0 +1,7 @@
+.sidebar {
+  grid-area: nav;
+  background-color: khaki;
+ }
+ .item {
+  color: white;
+ }

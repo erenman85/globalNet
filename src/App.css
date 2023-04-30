@@ -7,23 +7,5 @@
    grid-template-columns: 2fr 10fr;
 }
 
-header img {
-   background-color:black;
-   width: 40px;
-   margin: auto 0;
-}
-.header {
-grid-area: header;
-background-color: darkseagreen;
-}
-.sidbar {
- grid-area: nav;
- background-color: khaki;
-}
-.main-content {
- grid-area: post;
- background-color: lightslategrey;
-}
-.avatar {
-   width: 100px;
-}
+
+
