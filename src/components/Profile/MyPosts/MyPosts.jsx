@@ -1,5 +1,6 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
+import Post from './Post/Post';
 
 const MyPosts = () => {
   return (
@@ -10,12 +11,11 @@ const MyPosts = () => {
               New post
         </div>
         <div className={classes.posts}>
-            <div className={classes.item}>
-            <img className={classes.avatar} src='https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-1024.png'/>
-              post
-            1</div>
-            <div className={classes.item}>post2</div>
-          </div>
+          <Post />
+          <Post />
+          <Post />
+          <Post />
+        </div>
     </div>
   )
 }

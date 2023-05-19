@@ -9,7 +9,6 @@ const Profile = () => {
          <img className={classes.banner} src='http://blogtravel.by/wp-content/uploads/2021/11/dostoprimechatelnosti-venezii-34.jpg'/>
        </div>
           <div>
-          <img className={classes.avatar} src='https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-1024.png'/>
           <div>desription</div>
           </div>
           <MyPosts />
