@@ -6,5 +6,5 @@ header img {
 }
 .header {
 grid-area: header;
-background-color: darkseagreen;
+background-color: rgba(0, 0, 0, 0.574);
 }

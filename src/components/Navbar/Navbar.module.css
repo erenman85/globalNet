@@ -1,7 +1,11 @@
 .sidebar {
   grid-area: nav;
-  background-color: khaki;
+  padding: 20px;
  }
- .item {
+ .item a {
   color: white;
+  text-decoration: none;
+ }
+  a.activeLink {
+  color: gold;
  }

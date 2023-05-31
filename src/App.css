@@ -5,6 +5,10 @@
      'nav post';
    grid-template-rows: 50px 1fr;
    grid-template-columns: 2fr 10fr;
+   background-image: radial-gradient(ellipse at center, #68b4df 0%, #194173 100%);
+}
+.app-wraper-content {
+   grid-area: post;
 }
 
 

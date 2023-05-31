@@ -4,7 +4,7 @@ import MyPosts from './MyPosts/MyPosts';
 
 const Profile = () => {
   return (
-    <div className={classes.content}>
+    <div >
        <div>
          <img className={classes.banner} src='http://blogtravel.by/wp-content/uploads/2021/11/dostoprimechatelnosti-venezii-34.jpg'/>
        </div>
