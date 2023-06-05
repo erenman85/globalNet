@@ -1,17 +1,13 @@
 import React from 'react';
 import classes from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
 
-const Profile = () => {
+const Profile = (props) => {
   return (
     <div >
-       <div>
-         <img className={classes.banner} src='http://blogtravel.by/wp-content/uploads/2021/11/dostoprimechatelnosti-venezii-34.jpg'/>
-       </div>
-          <div>
-          <div>desription</div>
-          </div>
-          <MyPosts />
+       <ProfileInfo />
+        <MyPosts posts= {props.posts}/>
      </div>
   )
 }

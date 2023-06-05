@@ -13,7 +13,7 @@
   color: wheat;
 }
 
-.dialog.active {
+ a.activeLink {
   color: coral;
 }
 
