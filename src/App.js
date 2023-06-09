@@ -12,15 +12,17 @@ import {BrowserRouter, Route, Routes } from 'react-router-dom';
 
 const App = (props) => {
   return (
-    <BrowserRouter>
+    
     <div className='app-wraper'>
       <div className='main-app'>
         <Header />
         <Navbar />
         <div className='app-wraper-content'>
           <Routes>
-            <Route path='/profile' element = {<Profile posts= {props.posts}/>} />
-            <Route path='/dialogs/*' element = {<Dialogs dialogs= {props.data} messegeData= {props.chats} />} />
+            <Route path='/profile' element = {<Profile 
+                  state= {props.state.profilePages} />} />
+            <Route path='/dialogs/*' element = {<Dialogs 
+                  state = {props.state.dialogsPages} />} />
             <Route path='/news' element = {<News />} />
             <Route path='/music' element = {<Music />} />
             <Route path='/settings' element = {<Settings />} />
@@ -29,7 +31,7 @@ const App = (props) => {
         </div>
       </div> 
     </div>
-    </BrowserRouter>
+    
     );
 }
 export default App;
