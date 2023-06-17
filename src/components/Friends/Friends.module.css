@@ -1,0 +1,29 @@
+.friends {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+
+.friends_items {
+  padding: 15px;
+  
+}
+
+.friend a {
+  text-decoration: none;
+  color: wheat;
+  display: flex;
+}
+
+ a.activeLink {
+  color: burlywood;
+}
+
+.messages {
+  padding: 15px;
+}
+
+.avatar {
+  width: 30pxpx;
+  height: 30px;
+  border-radius: 50%;
+}

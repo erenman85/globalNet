@@ -4,7 +4,9 @@ import { NavLink } from 'react-router-dom';
 
 let activeLink = classes.activeLink;
 
+
 const Navbar = (props) => {
+  let listFriend = props.state.friends;
   return (
     <nav className={classes.sidebar}>
           <div className={classes.item}>
@@ -42,6 +44,16 @@ const Navbar = (props) => {
                 isActive ? activeLink : classes.item} >
                  Friends
             </NavLink>
+          </div>
+          <div className={classes.listFriends}>
+            <span>
+              <img className={classes.avatar} src= {listFriend[0].avatar}/> {listFriend[0].name}</span>
+            <span>
+            <img className={classes.avatar} src= {listFriend[1].avatar}/> {listFriend[1].name}
+            </span>
+            <span>
+            <img className={classes.avatar} src= {listFriend[2].avatar}/> {listFriend[2].name}
+            </span>
           </div>
         </nav>
   )

@@ -5,7 +5,22 @@
  .item a {
   color: white;
   text-decoration: none;
+  
  }
   a.activeLink {
   color: gold;
  }
+ .listFriends {
+  padding-top: 30px ;
+  
+
+ }
+ span {
+  width: 30px;
+  display: inline;
+ }
+ .avatar {
+  width: 30pxpx;
+  height: 30px;
+  border-radius: 50%;
+}
