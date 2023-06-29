@@ -15,12 +15,13 @@ const state = {
       {id : 4, name: 'Mama', avatar:'https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-1024.png'},
       {id : 5, name: 'Papa', avatar:'https://cdn2.iconfinder.com/data/icons/danger-problems/512/anonymous-1024.png'}
     ],
-      messeges: [
-        {id:1, messege : 'Hello'},
-        {id:2, messege : 'What`s up??'},
-        {id:3, messege : 'Caramba!!!'},
-        {id:4, messege : 'YO!'}
-      ]
+      messages: [
+        {id:1, message : 'Hello'},
+        {id:2, message : 'What`s up??'},
+        {id:3, message : 'Caramba!!!'},
+        {id:4, message : 'YO!'}
+      ],
+      newMessageText: "new message.."
   },
 
   sidebarPages : {
@@ -50,6 +51,21 @@ export let updateNewPostText = (newText) => {
   state.profilePages.newPostText = newText;
   rerenderEntireTree(state);
 
+}
+
+export let addMessage = () =>{
+  let newMessage = {
+    id:5,
+    message:state.dialogsPages.newMessageText
+  };
+  state.dialogsPages.messages.push(newMessage);
+  state.dialogsPages.newMessageText = '';
+  rerenderEntireTree(state);
+}
+
+export let updateNewMessageText = (text) => {
+  state.dialogsPages.newMessageText = text;
+  rerenderEntireTree(state);
 }
 
 

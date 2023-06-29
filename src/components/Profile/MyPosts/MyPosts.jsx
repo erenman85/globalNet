@@ -9,7 +9,6 @@ const MyPosts = (props) => {
     .map(p => <Post message={p.message} likeCount={p.likeCount} />);
     let addPost = () => {
       props.addPost();
-      updateNewPostText('');
     };
     let onPostChange = () => {
       let text = newPostElement.current.value;

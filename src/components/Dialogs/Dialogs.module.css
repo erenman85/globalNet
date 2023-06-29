@@ -20,10 +20,14 @@
 
 .messages {
   padding: 15px;
+  color: aliceblue;
 }
 
 .avatar {
   width: 30pxpx;
   height: 30px;
   border-radius: 50%;
+}
+.textarea {
+  padding-top: 1px;
 }
