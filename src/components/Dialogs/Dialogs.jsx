@@ -2,17 +2,17 @@ import React from 'react';
 import classes from './Dialogs.module.css';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
+import { addMessageActionCreator,updateNewMessageActionCreator } from '../../redax/store';
 
 
-
-let Dialogs = (props) => {
-  let newMessageElement = React.createRef();
+const Dialogs = (props) => {
   let addMessage = () => {
-    props.addMessage();
+    props.dispatch(addMessageActionCreator());
 };
-let onMessageChange = () => {
-  let text = newMessageElement.current.value;
-  props.updateNewMessageText(text);
+let onMessageChange = (e) => {
+  let text = e.target.value;
+  let action = updateNewMessageActionCreator(text);
+  props.dispatch(action);
 }
 
   let dilogsElement = props.dialogsPages.dialogs
@@ -29,7 +29,7 @@ let onMessageChange = () => {
            {messagesElements}
           </div>
            <div className= {classes.textarea}>
-            <textarea onChange={onMessageChange} ref={newMessageElement} value={props.dialogsPages.newMessageText} />
+            <textarea onChange={onMessageChange} placeholder='Enter your message' value={props.dialogsPages.newMessageText} />
             </div>
         <div>
           <button onClick={addMessage} >add message</button>

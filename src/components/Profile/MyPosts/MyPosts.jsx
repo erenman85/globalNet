@@ -1,18 +1,21 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
-import { updateNewPostText } from '../../../redax/state';
+import { addPostActionCreator, udateNewPostTextActionCreator } from '../../../redax/store';
+
+
 
 const MyPosts = (props) => {
   let newPostElement = React.createRef();
   let postsElement = props.posts
     .map(p => <Post message={p.message} likeCount={p.likeCount} />);
     let addPost = () => {
-      props.addPost();
+      props.dispatch(addPostActionCreator());
     };
     let onPostChange = () => {
       let text = newPostElement.current.value;
-      props.updateNewPostText(text);
+      let action = udateNewPostTextActionCreator(text);
+      props.dispatch(action);
     }
   return (
     <div className={classes.post_block}>
