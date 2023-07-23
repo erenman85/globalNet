@@ -8,7 +8,7 @@ let store = {
     profilePages: {
       posts: [{ id: 1, message: 'Hi,How are you?', likeCount: 45 },
       { id: 2, message: "It's my first post", likeCount: 12 } ],
-      newPostText: "new post.."
+      newPostText: ""
     },
     dialogsPages: {
       dialogs:  [
@@ -24,7 +24,7 @@ let store = {
           {id:3, message : 'Caramba!!!'},
           {id:4, message : 'YO!'}
         ],
-        newMessageText: "new message.."
+        newMessageText: ""
     },
     sidebarPages: {
       friends: [

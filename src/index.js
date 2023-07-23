@@ -4,7 +4,7 @@ import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import store from './redax/redax-store';
+import store from './redux/redux-store';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -13,7 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-      <App state= {state} dispatch = {store.dispatch.bind(store)} />
+      <App state = {state} store= {store} dispatch = {store.dispatch.bind(store)} />
       </BrowserRouter>
     </React.StrictMode>
   );
