@@ -6,7 +6,7 @@ const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 let initialState = {
    posts: [{ id: 1, message: 'Hi,How are you?', likeCount: 45 },
     { id: 2, message: "It's my first post", likeCount: 12 } ],
-    newPostText: "new post.."
+    newPostText: ""
 };
 
 
@@ -32,7 +32,7 @@ const profileReducer = (state = initialState, action) => {
 
 
   export let addPostActionCreator = () => ({type : ADD_POST});
-  export let udateNewPostTextActionCreator = (text) => ({type : UPDATE_NEW_POST_TEXT, newText : text});
+  export let updateNewPostTextActionCreator = (text) => ({type : UPDATE_NEW_POST_TEXT, newText : text});
 
 
 

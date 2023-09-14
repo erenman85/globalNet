@@ -5,15 +5,17 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import store from './redux/redux-store';
+import { Provider } from 'react-redux';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
- let rerenderEntireTree = (state) => {
-  debugger;
+ let rerenderEntireTree = () => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-      <App state = {state} store= {store} dispatch = {store.dispatch.bind(store)} />
+       <Provider store={store}>
+           <App />
+       </Provider>    
       </BrowserRouter>
     </React.StrictMode>
   );

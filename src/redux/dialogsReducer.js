@@ -18,7 +18,7 @@ let initialState = {
       {id:3, message : 'Caramba!!!'},
       {id:4, message : 'YO!'}
     ],
-    newMessageText: "new message.."
+    newMessageText: ""
 };
 
 

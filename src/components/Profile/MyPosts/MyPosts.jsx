@@ -13,7 +13,7 @@ const MyPosts = (props) => {
      };
     let onPostChange = (e) => {
        let text = e.target.value;
-       props.udateNewPostText(text);
+       props.updateNewPostText(text);
     }
   return (
     <div className={classes.post_block}>
