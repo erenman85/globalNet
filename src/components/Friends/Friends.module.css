@@ -1,6 +1,6 @@
 .friends {
   display: grid;
-  grid-template-columns: 2fr 10fr;
+  /* grid-template-columns: 2fr 10fr; */
 }
 
 .friends_items {
@@ -14,7 +14,7 @@
   display: flex;
 }
 
- a.activeLink {
+ .activeLink a {
   color: burlywood;
 }
 
