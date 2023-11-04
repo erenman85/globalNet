@@ -7,13 +7,15 @@ import userPhoto from "../../assets/images/userM.jpg"
 
 
 const Friends = (props) => {
-  if(props.friends.length === 0) {
-    axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response =>{
-      props.setFriends(response.data.items);
-
-  })
-  }
+ 
    return <div>
+     <div className={classes.pageNumber}>{slicedPages.map(p => {
+       return <span className={this.props.currentPage === p && classes.selectPage}
+       onClick={(e) => {this.onPageChanged(p)}}>
+         {p}
+        </span>
+     })}
+     </div>
     {
       props.friends.map( u => <div key={u.id}>
           <div>
