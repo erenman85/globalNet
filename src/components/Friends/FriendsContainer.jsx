@@ -1,74 +1,50 @@
-
-import { followAC, setFriendsAC, unfollowAC, setCurrentPageAC, setTotalUsersCountAC } from "../../redux/friendsReducer";
+import React from "react";
+import axios from "axios";
+import { follow, setFriends, unfollow, setCurrentPage, setTotalUsersCount, toggleIsFetching } from "../../redux/friendsReducer";
 import { connect } from "react-redux";
 import Friends from "./Friends";
-
+import Preloader from "../common/Preloader/Preloader";
 
 
 class UsersC extends React.Component {
   componentDidMount() {
    //ajax request
+     this.props.toggleIsFetching(true);
      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
        .then(response =>{
+          this.props.toggleIsFetching(false);
           this.props.setFriends(response.data.items);
           this.props.setTotalUsersCount(response.data.totalCount)
         })
   }
   //постраничный вывод списка юзеров
   onPageChanged = (pageNumber) => {
+    this.props.toggleIsFetching(true);
    this.props.setCurrentPage(pageNumber);
    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
        .then(response =>{
+        this.props.toggleIsFetching(false);
           this.props.setFriends(response.data.items);
         })
 
   }
 
   render() {
-   let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize);
-   let pages = [];
-   for(let i = 1; i <= pagesCount; i++) {
-       pages.push(i);
-   }
-   let curP = this.props.currentPage;
-   let curPF = ((curP - 5) < 0) ?  0  : curP - 5 ;
-   let curPL = curP + 5;
-   let slicedPages = pages.slice( curPF, curPL);
-
    return <div>
-     <div className={classes.pageNumber}>{slicedPages.map(p => {
-       return <span className={this.props.currentPage === p && classes.selectPage}
-       onClick={(e) => {this.onPageChanged(p)}}>
-         {p}
-        </span>
-     })}
-     </div>
-   {
-     this.props.friends.map( u => <div key={u.id}>
-         <div>
-           <div>
-             <img className={classes.avatar} src= {u.photos.small != null ? u.photos.small : userPhoto}/>
-           </div>
-           <div>
-             {u.followed
-             ?<button onClick={() => {this.props.unfollow(u.id)}}>unfollow</button>
-             : <button onClick={() => {this.props.follow(u.id)}}>follow</button>}
-           </div>
-         </div>
-         <div>
-           <div>
-             <div>{u.name}</div>
-             <div>{u.status}</div>
-           </div>
-           <div>
-             <div>{'u.location.city'}</div>
-             <div>{'u.location.country'}</div>
-           </div>
-         </div>
-       </div>
-     )
-   }
-  </div> 
+     {this.props.isFetching ? <Preloader /> : null}
+    <Friends  currentPage = {this.props.currentPage}
+                    onPageChanged = {this.onPageChanged}
+                    friends = {this.props.friends}
+                    follow = {this.props.follow}
+                    unfollow = {this.props.unfollow}
+                    totalUsersCount ={this.props.totalUsersCount}
+                    pageSize = {this.props.pageSize}
+
+   />
+
+   </div>
+     
+   
 }
 }
 
@@ -78,31 +54,42 @@ const mapStateToProps = (state) => {
     friends: state.friendsPages.friends,
     pageSize: state.friendsPages.pageSize,
     totalUsersCount: state.friendsPages.totalUsersCount,
-    currentPage:state.friendsPages.currentPage
+    currentPage:state.friendsPages.currentPage,
+    isFetching: state.friendsPages.isFetching
 
   }
 };
-const mapDispathToProps = (dispatch) => {
-  return {
-    follow: (friendsId) => {
-      dispatch(followAC(friendsId));
-    },
-    unfollow: (friendsId) => {
-      dispatch(unfollowAC(friendsId))
-    },
-    setFriends: (friends) => {
-      dispatch(setFriendsAC(friends))
-    },
-    setCurrentPage: (pageNumber) => {
-      dispatch(setCurrentPageAC(pageNumber))
-    },
-    setTotalUsersCount: (totalUsers) => {
-      dispatch(setTotalUsersCountAC(totalUsers))
-    }
-  }
+// const mapDispathToProps = (dispatch) => {
+//   return {
+//     follow: (friendsId) => {
+//       dispatch(followAC(friendsId));
+//     },
+//     unfollow: (friendsId) => {
+//       dispatch(unfollowAC(friendsId))
+//     },
+//     setFriends: (friends) => {
+//       dispatch(setFriendsAC(friends))
+//     },
+//     setCurrentPage: (pageNumber) => {
+//       dispatch(setCurrentPageAC(pageNumber))
+//     },
+//     setTotalUsersCount: (totalUsers) => {
+//       dispatch(setTotalUsersCountAC(totalUsers))
+//     },
+//     toggleIsFetching: (isFetching) => {
+//       dispatch(toggleIsFetchingAC(isFetching))
+//     }
+//   }
 
-}
+// }
 
-const FriendsContainer = connect (mapStateToProps, mapDispathToProps) (UsersC);
+const FriendsContainer = connect (mapStateToProps, {
+  follow,
+  unfollow,
+  setFriends,
+  setCurrentPage,
+  setTotalUsersCount,
+  toggleIsFetching
+}) (UsersC);
 
 export default FriendsContainer;

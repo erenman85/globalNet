@@ -1,17 +1,23 @@
-import React from "react";
-import classes from "./Friends.module.css";
-import axios from "axios";
-import userPhoto from "../../assets/images/userM.jpg"
-
-
+import React from 'react';
+import classes from './Friends.module.css';
+import userPhoto from '../../assets/images/userM.jpg';
 
 
 const Friends = (props) => {
+  let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+   let pages = [];
+   for(let i = 1; i <= pagesCount; i++) {
+       pages.push(i);
+   }
+   let curP = props.currentPage;
+   let curPF = ((curP - 5) < 0) ?  0  : curP - 5 ;
+   let curPL = curP + 5;
+   let slicedPages = pages.slice( curPF, curPL);
  
    return <div>
      <div className={classes.pageNumber}>{slicedPages.map(p => {
-       return <span className={this.props.currentPage === p && classes.selectPage}
-       onClick={(e) => {this.onPageChanged(p)}}>
+       return <span className={props.currentPage === p && classes.selectPage}
+       onClick={(e) => {props.onPageChanged(p)}}>
          {p}
         </span>
      })}
