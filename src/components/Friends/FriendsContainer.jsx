@@ -41,10 +41,7 @@ class UsersC extends React.Component {
                     pageSize = {this.props.pageSize}
 
    />
-
    </div>
-     
-   
 }
 }
 
