@@ -8,3 +8,11 @@ header img {
 grid-area: header;
 background-color: rgba(0, 0, 0, 0.574);
 }
+.loginBlock {
+  float: right;
+  color:lightyellow;
+}
+.loginBlock a {
+  color:lightyellow;
+  text-decoration: none;
+}

@@ -2,18 +2,19 @@ import React from 'react';
 import classes from './Friends.module.css';
 import userPhoto from '../../assets/images/userM.jpg';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Friends = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
-   let pages = [];
+   let pages = [];//1 
    for(let i = 1; i <= pagesCount; i++) {
        pages.push(i);
    }
-   let curP = props.currentPage;
-   let curPF = ((curP - 5) < 0) ?  0  : curP - 5 ;
-   let curPL = curP + 5;
-   let slicedPages = pages.slice( curPF, curPL);
+   let curP = props.currentPage;//1
+   let curPF = ((curP - 5) <= 0) ?  0  : curP - 5 ;//0
+   let curPL = curP + 5;//6
+   let slicedPages = pages.slice( curPF, curPL);//[0,6]= 1
  
    return <div>
      <div className={classes.pageNumber}>{slicedPages.map(p => {
@@ -32,9 +33,22 @@ const Friends = (props) => {
               </NavLink>
             </div>
             <div>
-              {u.followed
-              ?<button onClick={() => {props.unfollow(u.id)}}>unfollow</button>
-              : <button onClick={() => {props.follow(u.id)}}>follow</button>}
+              {u.followed ?<button onClick={() => {
+                axios.get(`https://social-network.samuraijs.com/api/1.0/users?`)
+                 .then(response =>{
+                 this.props.toggleIsFetching(false);
+                 this.props.setFriends(response.data.items);
+           }) 
+               props.unfollow(u.id)
+           }}>unfollow</button>
+              : <button onClick= {() => {
+                axios.get(`https://social-network.samuraijs.com/api/1.0/users?`)
+                  .then(response =>{
+                    this.props.toggleIsFetching(false);
+                    this.props.setFriends(response.data.items);
+            })     
+                props.follow(u.id)
+              }}>follow</button>}
             </div>
           </div>
           <div>
