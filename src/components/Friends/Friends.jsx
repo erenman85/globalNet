@@ -25,40 +25,48 @@ const Friends = (props) => {
      })}
      </div>
     {
-      props.friends.map( u => <div key={u.id}>
+      props.friends.map( user => <div key={user.id}>
+        
           <div>
             <div>
-              <NavLink to = {'/profile/'+ u.id}>
-              <img className={classes.avatar} src= {u.photos.small != null ? u.photos.small : userPhoto}/>
+              <NavLink to = {'/profile/'+ user.id}>
+              <img className={classes.avatar} src= {user.photos.small != null ? user.photos.small : userPhoto}/>
               </NavLink>
             </div>
             <div>
-              {u.followed ?<button onClick={() => {
-                axios.get(`https://social-network.samuraijs.com/api/1.0/users?`)
-                 .then(response =>{
-                 this.props.toggleIsFetching(false);
-                 this.props.setFriends(response.data.items);
-           }) 
-               props.unfollow(u.id)
-           }}>unfollow</button>
-              : <button onClick= {() => {
-                axios.get(`https://social-network.samuraijs.com/api/1.0/users?`)
-                  .then(response =>{
-                    this.props.toggleIsFetching(false);
-                    this.props.setFriends(response.data.items);
-            })     
-                props.follow(u.id)
-              }}>follow</button>}
+              {user.followed 
+              ? <button onClick={() => {//запрос-удалить подписку
+                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                     withCredentials: true,
+                     headers: {"API-KEY": "a596a28d-1ab3-4aad-8e6a-ddf1ab18aa09"}
+                 })
+                   .then(response => {
+                      if(response.data.resultCode === 0) {
+                        props.unfollow(user.id);
+                      }
+                   })
+               }}>unfollow</button> 
+              : <button onClick= {() => {//запрос-пост на подписку
+                  axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,{}, {
+                     withCredentials: true,
+                     headers: {"API-KEY": "a596a28d-1ab3-4aad-8e6a-ddf1ab18aa09"}
+                })
+                   .then(response => { 
+                       if(response.data.resultCode === 0) {
+                        props.follow(user.id)
+                       }
+                   })
+               }}>follow</button>}
             </div>
           </div>
           <div>
             <div>
-              <div>{u.name}</div>
-              <div>{u.status}</div>
+              <div>{user.name}</div>
+              <div>{user.status}</div>
             </div>
             <div>
-              <div>{'u.location.city'}</div>
-              <div>{'u.location.country'}</div>
+              {/* <div>{'user.location.city'}</div> */}
+              {/* <div>{'user.location.country'}</div> */}
             </div>
           </div>
         </div>

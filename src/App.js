@@ -7,7 +7,7 @@ import Settings from './components/Settings/Settings';
 import { Route, Routes } from 'react-router-dom';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
 import NavbarContainer from './components/Navbar/NavbarContainer';
-import FriendsContainer from './components/Friends/FriendsContainer';
+import FriendsContainer from './components/Friends/UsersC';
 import ProfileNewContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 

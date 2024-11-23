@@ -8,9 +8,14 @@ import Preloader from "../common/Preloader/Preloader";
 
 class UsersC extends React.Component {
   componentDidMount() {
-   //ajax request
+   //ajax request пользователей список
      this.props.toggleIsFetching(true);
-     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,{
+      withCredentials: true,
+      headers: {
+        "API-KEY": "586a75ca-8b69-4196-8e7e-0480c60eaa83"
+      }
+     })
        .then(response =>{
           this.props.toggleIsFetching(false);
           this.props.setFriends(response.data.items);
@@ -21,7 +26,9 @@ class UsersC extends React.Component {
   onPageChanged = (pageNumber) => {
     this.props.toggleIsFetching(true);
    this.props.setCurrentPage(pageNumber);
-   axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+   axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {
+       withCredentials: true
+    })
        .then(response =>{
         this.props.toggleIsFetching(false);
           this.props.setFriends(response.data.items);
@@ -52,8 +59,8 @@ const mapStateToProps = (state) => {
     pageSize: state.friendsPages.pageSize,
     totalUsersCount: state.friendsPages.totalUsersCount,
     currentPage:state.friendsPages.currentPage,
-    isFetching: state.friendsPages.isFetching
-
+    isFetching: state.friendsPages.isFetching,
+    followed:state.friendsPages.followed
   }
 };
 // const mapDispathToProps = (dispatch) => {
